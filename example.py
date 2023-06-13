@@ -19,9 +19,9 @@
 '''
 
 import os
+import numpy as np
 import utilsKinematics
 from utils import download_kinematics
-from utilsPlotting import plot_dataframe
 
 # %% User inputs.
 # Specify session id; see end of url in app.opencap.ai/session/<session_id>.
@@ -45,8 +45,4 @@ for trial_name in trial_names:
     # Get center of mass values, speeds, and accelerations.
     center_of_mass['values'][trial_name] = kinematics[trial_name].get_center_of_mass_values(lowpass_cutoff_frequency=10)
     
-# Plot center of mass values.
-plot_dataframe(dataframes = [center_of_mass['values'][trial_names[0]]],
-               xlabel = 'Time (s)',
-               title = 'Center of mass values',
-               labels = [trial_names[0]])
+print('Maximal center of mass vertical position: {} m'.format(np.round(np.max(center_of_mass['values'][trial_names[0]]['y']), 2)))

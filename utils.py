@@ -152,7 +152,7 @@ def get_motion_data(trial_id, session_path):
         
         
 def get_geometries(session_path,
-                   modelName='LaiArnoldModified2017_poly_withArms_weldHand_scaled'):
+                   modelName='LaiUhlrich2022_scaled'):
         
     geometryFolder = os.path.join(session_path, 'OpenSimData', 'Model', 'Geometry')
     try:

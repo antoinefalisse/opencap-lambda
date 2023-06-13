@@ -207,7 +207,7 @@ def segmentSTS(ikFilePath, pelvis_ty=None, timeVec=None, velSeated=0.3,
 def adjustMuscleWrapping(
         baseDir, dataDir, subject, poseDetector='DefaultPD', 
         cameraSetup='DefaultModel', 
-        OpenSimModel="LaiArnoldModified2017_poly_withArms_weldHand",
+        OpenSimModel="LaiUhlrich2022",
         overwrite=False):
     
     # Paths
@@ -472,7 +472,7 @@ def getMomentArms(model, poses, muscleName, coordinateForMomentArm):
 # %% Generate model with contacts.
 def generateModelWithContacts(
         dataDir, subject, poseDetector='DefaultPD', cameraSetup='DefaultModel',
-        OpenSimModel="LaiArnoldModified2017_poly_withArms_weldHand",
+        OpenSimModel="LaiUhlrich2022",
         setPatellaMasstoZero=True, overwrite=False):
     
     # %% Process settings.

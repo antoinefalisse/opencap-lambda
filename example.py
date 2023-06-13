@@ -25,23 +25,23 @@ from utils import download_kinematics
 
 # %% User inputs.
 # Specify session id; see end of url in app.opencap.ai/session/<session_id>.
-session_id = "4d5c3eb1-1a59-4ea1-9178-d3634610561c"
+session_id = "bd61b3a6-813d-411c-8067-92315b3d4e0d"
 
 # Specify trial names in a list; use None to process all trials in a session.
-specific_trial_names = ['jump']
+specific_trial_names = ['test']
 
 # Specify where to download the data.
 data_folder = os.path.join("./Data", session_id)
 
 # %% Download data.
-trial_names = download_kinematics(session_id, folder=data_folder, trialNames=specific_trial_names)
+trial_names, modelName = download_kinematics(session_id, folder=data_folder, trialNames=specific_trial_names)
 
 # %% Process data.
 kinematics, center_of_mass = {}, {}
 center_of_mass['values'] = {}
 for trial_name in trial_names:
     # Create object from class kinematics.
-    kinematics[trial_name] = utilsKinematics.kinematics(data_folder, trial_name, lowpass_cutoff_frequency_for_coordinate_values=10)    
+    kinematics[trial_name] = utilsKinematics.kinematics(data_folder, trial_name, modelName=modelName, lowpass_cutoff_frequency_for_coordinate_values=10)    
     # Get center of mass values, speeds, and accelerations.
     center_of_mass['values'][trial_name] = kinematics[trial_name].get_center_of_mass_values(lowpass_cutoff_frequency=10)
     

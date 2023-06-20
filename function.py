@@ -35,9 +35,9 @@ api = Api(app)
 class Function(Resource):
     def post(self):
         if 'session_id' not in request.json:
-            return {'error': 'session_is is required.'}, 400
+            return {'error': '`session_id` is required.'}, 400
         if 'specific_trial_names' not in request.json:
-            return {'error': 'specific_trial_names is required.'}, 400
+            return {'error': '`specific_trial_names` is required.'}, 400
         
         # %% User inputs.
         # Specify session id; see end of url in app.opencap.ai/session/<session_id>.
@@ -51,7 +51,6 @@ class Function(Resource):
         trial_names, modelName = download_kinematics(
             session_id, folder=data_folder, trialNames=specific_trial_names
         )
-
         # %% Process data.
         kinematics, center_of_mass = {}, {}
         center_of_mass['values'] = {}

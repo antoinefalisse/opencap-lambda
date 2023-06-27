@@ -26,7 +26,7 @@ import scipy.interpolate as interpolate
 
 from utilsProcessing import lowPassFilter
 
-class kinematics:
+class Kinematics:
     
     def __init__(self, dataDir, trialName, 
                  modelName='LaiUhlrich2022_scaled',

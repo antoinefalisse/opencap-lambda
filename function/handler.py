@@ -25,6 +25,20 @@ from utils import download_kinematics
 
 
 def handler(event, context):
+    """ AWS Lambda function handler. This function calculates
+        maximal center of mass vertical position for specified session and trials.
+
+        To invoke the function do POST request on the following url
+        http://localhost:8080/2015-03-31/functions/function/invocations
+    """
+    for field in ('session_id', 'specific_trial_names'):
+        if field not in event:
+            return {
+                'statusCode': 400,
+                'headers': {'Content-Type': 'application/json'},
+                'body': {'error': f'{field} field is required.'}
+            }
+
     # %% User inputs.
     # Specify session id; see end of url in app.opencap.ai/session/<session_id>.
     # session_id = "bd61b3a6-813d-411c-8067-92315b3d4e0d"
@@ -55,11 +69,9 @@ def handler(event, context):
     
     max_center_of_mass = np.round(np.max(center_of_mass['values'][trial_names[0]]['y']), 2)
     return {
-        "statusCode": 200,
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "body": {
-            "message": "Maximal center of mass vertical position: {} m".format(max_center_of_mass)
+        'statusCode': 200,
+        'headers': {'Content-Type': 'application/json'},
+        'body': {
+            'message': f'Maximal center of mass vertical position: {max_center_of_mass} m'
         }
     }

@@ -1,0 +1,9 @@
+services:
+  aws_lambda_func:
+    container_name: aws_lambda_func
+    build: .
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./.env
+    entrypoint: "python3.8 function.py"

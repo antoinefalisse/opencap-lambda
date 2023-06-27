@@ -1,7 +1,6 @@
 FROM stanfordnmbl/opensim-python:4.3
 
-# Copy the requirements.txt file to our Docker image
-ADD requirements.txt .
+COPY . .
+RUN pip --no-cache-dir install -r requirements.txt
 
-# Install the requirements.txt
-RUN pip install -r requirements.txt
+CMD ["python3", "function.py"]
